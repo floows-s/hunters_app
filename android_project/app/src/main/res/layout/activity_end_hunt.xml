@@ -6,4 +6,20 @@
     android:layout_height="match_parent"
     tools:context=".End_hunt">
 
+    <TextView
+        android:id="@+id/textView6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="TextView"
+        android:textSize="20sp"
+        tools:layout_editor_absoluteX="164dp"
+        tools:layout_editor_absoluteY="61dp" />
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="156dp"
+        android:layout_height="72dp"
+        android:text="Button"
+        tools:layout_editor_absoluteX="127dp"
+        tools:layout_editor_absoluteY="448dp" />
 </androidx.constraintlayout.widget.ConstraintLayout>
