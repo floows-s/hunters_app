@@ -23,7 +23,7 @@
         android:layout_width="218dp"
         android:layout_height="63dp"
         android:text="Maak een Speurtocht"
-        android:onClick=""
+        android:onClick="Make_hunt"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

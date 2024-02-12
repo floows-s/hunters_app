@@ -7,10 +7,11 @@
     tools:context=".Make_hunt">
 
     <Button
-        android:id="@+id/btn_add"
+        android:id="@+id/btn_add_location"
         android:layout_width="173dp"
         android:layout_height="50dp"
-        android:text="Voeg toe"
+        android:onClick="Make_location"
+        android:text="Voeg locatie toe"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.067"
@@ -23,6 +24,7 @@
         android:layout_width="173dp"
         android:layout_height="50dp"
         android:text="Klaar"
+        android:onClick="MainActivity"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.932"

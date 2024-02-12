@@ -13,6 +13,11 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
     }
 
+    public fun Make_hunt(view: View){
+        var goToMake_hunt = Intent(this, Make_hunt::class.java)
+        startActivity(goToMake_hunt)
+    }
+
     public fun SelectHunt(view: View) {
         var goToSelectHunt = Intent(this, SelectHunt::class.java)
         startActivity(goToSelectHunt)
