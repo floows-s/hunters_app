@@ -4,41 +4,43 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
-
-    <TextView
-        android:id="@+id/txt_hunters"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hunters"
-        android:textSize="34sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.123" />
+    tools:context=".Make_hunt">
 
     <Button
-        android:id="@+id/btn_make_hunt"
-        android:layout_width="218dp"
-        android:layout_height="63dp"
-        android:text="Maak een Speurtocht"
+        android:id="@+id/btn_add"
+        android:layout_width="173dp"
+        android:layout_height="50dp"
+        android:text="Voeg toe"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.067"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.428" />
+        app:layout_constraintVertical_bias="0.023" />
 
     <Button
-        android:id="@+id/btn_game_hunt"
-        android:layout_width="218dp"
-        android:layout_height="63dp"
-        android:text="Speel een Speurtocht"
+        android:id="@+id/btn_finish_1"
+        android:layout_width="173dp"
+        android:layout_height="50dp"
+        android:text="Klaar"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintHorizontal_bias="0.932"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.564" />
+        app:layout_constraintVertical_bias="0.023" />
 
+    <EditText
+        android:id="@+id/editTextText"
+        android:layout_width="298dp"
+        android:layout_height="56dp"
+        android:ems="10"
+        android:hint="Naam van Speurtocht"
+        android:inputType="text"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.21" />
 </androidx.constraintlayout.widget.ConstraintLayout>
