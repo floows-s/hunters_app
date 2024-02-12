@@ -7,19 +7,27 @@
     tools:context=".End_hunt">
 
     <TextView
-        android:id="@+id/textView6"
+        android:id="@+id/txt_end"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="TextView"
+        android:text="Je hebt alle locaties gevonden"
         android:textSize="20sp"
-        tools:layout_editor_absoluteX="164dp"
-        tools:layout_editor_absoluteY="61dp" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.132" />
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/btn_finish_3"
         android:layout_width="156dp"
         android:layout_height="72dp"
-        android:text="Button"
-        tools:layout_editor_absoluteX="127dp"
-        tools:layout_editor_absoluteY="448dp" />
+        android:text="Klaar"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txt_end"
+        app:layout_constraintVertical_bias="0.656" />
 </androidx.constraintlayout.widget.ConstraintLayout>
