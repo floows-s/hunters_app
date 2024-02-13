@@ -18,8 +18,8 @@ class MainActivity : AppCompatActivity() {
         startActivity(goToMake_hunt)
     }
 
-    public fun SelectHunt(view: View) {
-        var goToSelectHunt = Intent(this, SelectHunt::class.java)
-        startActivity(goToSelectHunt)
+    public fun GameHunt(view: View) {
+        var goToGameHunt = Intent(this, Hunt::class.java)
+        startActivity(goToGameHunt)
     }
 }
