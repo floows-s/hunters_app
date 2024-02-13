@@ -45,11 +45,10 @@
         app:layout_constraintVertical_bias="0.609" />
 
     <EditText
-        android:id="@+id/etx_x"
+        android:id="@+id/etx_la"
         android:layout_width="172dp"
         android:layout_height="50dp"
         android:ems="10"
-        android:hint="Leeg X"
         android:inputType="text"
         android:textSize="12sp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -73,11 +72,10 @@
         app:layout_constraintVertical_bias="0.352" />
 
     <EditText
-        android:id="@+id/etx_y"
+        android:id="@+id/etx_lo"
         android:layout_width="172dp"
         android:layout_height="50dp"
         android:ems="10"
-        android:hint="Leeg Y"
         android:inputType="text"
         android:textSize="12sp"
         app:layout_constraintBottom_toBottomOf="parent"
