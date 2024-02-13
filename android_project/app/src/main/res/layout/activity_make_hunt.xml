@@ -37,7 +37,7 @@
         android:layout_width="298dp"
         android:layout_height="56dp"
         android:ems="10"
-        android:hint="Naam van Speurtocht"
+        android:hint="Naam van Locatie"
         android:inputType="text"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
