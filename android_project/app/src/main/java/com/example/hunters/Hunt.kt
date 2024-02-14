@@ -50,19 +50,19 @@ class Hunt : AppCompatActivity() {
     //
     }
     //
-    override fun onResume() {
-        super.onResume()
-        startLocationUpdates()
-    }
+//    override fun onResume() {
+//        super.onResume()
+//        startLocationUpdates()
+//    }
 
-    private fun startLocationUpdates() {
-        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-            // Request location permissions if not granted
-            ActivityCompat.requestPermissions(this, arrayOf(Manifest.permission.ACCESS_FINE_LOCATION), 0)
-        } else {
-            fusedLocationClient.requestLocationUpdates(locationRequest, locationCallback, Looper.getMainLooper())
-        }
-    }
+//    private fun startLocationUpdates() {
+//        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+//            // Request location permissions if not granted
+//            ActivityCompat.requestPermissions(this, arrayOf(Manifest.permission.ACCESS_FINE_LOCATION), 0)
+//        } else {
+//            fusedLocationClient.requestLocationUpdates(locationRequest, locationCallback, Looper.getMainLooper())
+//        }
+//    }
 
     override fun onPause() {
         super.onPause()
