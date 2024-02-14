@@ -16,7 +16,7 @@ import android.widget.ImageView
 
 class Make_location : AppCompatActivity() {
     val REQUEST_IMAGE_CAPTURE = 100;
-    var database =
+    var database = Database(this);
     var loc_han = Location_handler(this);
 
     // data for location
@@ -30,8 +30,8 @@ class Make_location : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_make_location)
 
-        var button = findViewById<View>(R.id.btn_gps);
-        button.isEnabled = false;
+        var gps_btn = findViewById<View>(R.id.btn_gps);
+        gps_btn.isEnabled = false;
 
         loc_han.start_cap();
 
@@ -46,8 +46,9 @@ class Make_location : AppCompatActivity() {
         timer.start()
     }
     public fun BackTo_make_hunt_klaar(view: View){
-
-
+        // create and save object
+        var new_location = Hunt_location(0, lat, lon, bitmap_img);
+        database.insert_location(new_location)
 
         var goToMake_hunt = Intent(this, Make_hunt::class.java)
         startActivity(goToMake_hunt)
@@ -57,8 +58,8 @@ class Make_location : AppCompatActivity() {
     {
         if (loc_han.hasGPS() == true)
         {
-            var button = findViewById<View>(R.id.btn_gps);
-            button.isEnabled = true;
+            var gps_btn = findViewById<View>(R.id.btn_gps);
+            gps_btn.isEnabled = true;
         }
     }
     private fun FailedToGetGPS(){
