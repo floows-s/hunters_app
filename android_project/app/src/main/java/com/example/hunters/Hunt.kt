@@ -11,6 +11,7 @@ import android.os.CountDownTimer
 import android.os.Looper
 import android.util.Log
 import android.widget.ImageView
+import android.widget.TextView
 import androidx.core.app.ActivityCompat
 import com.google.android.gms.location.*
 
@@ -62,10 +63,15 @@ class Hunt : AppCompatActivity() {
             // logging ("success")
         return;
         }
+        var txt_found_loc = findViewById<TextView>(R.id.txt_found_location);
 
         var img_view = findViewById<ImageView>(R.id.img_view2);
-
         var cur_loc = loc_to_get.get(currentPos);
+
+
+        // load text
+        txt_found_loc.setText("Locatie " + currentPos + "/" + loc_to_get.size.toString() + " gevonden")
+
         // load image
         img_view.setImageBitmap(cur_loc.get_img());
 
@@ -96,6 +102,10 @@ class Hunt : AppCompatActivity() {
 
         // check if reached goal
         var distanceInMeters = cur_loc.calc_distance(cur_lat, cur_lon);
+
+        var txt_distance = findViewById<TextView>(R.id.txt_distance);
+        txt_distance.setText("Je bent " + distanceInMeters.toString() + "meter van de locatie af .....")
+
         Log.i("Distance", "Distance in meters: $distanceInMeters")
 
         if(distanceInMeters >= disThershold){
