@@ -7,8 +7,13 @@ import android.os.Bundle
 
 class Hunt_location(var id: Int, var latitude: Double, var longitude: Double, var img_bitmap: Bitmap) {
 
-
-
+//    public static void distanceBetween (double startLatitude,
+//    double startLongitude,
+//    double endLatitude,
+//    double endLongitude,
+//    float[] results)
+//
+//    public float distanceTo (Location dest)
     public fun calc_distance(lat_p2: Double, lon_p2: Double){
         var lat_p1 = latitude;
         var lon_p1 = longitude;
