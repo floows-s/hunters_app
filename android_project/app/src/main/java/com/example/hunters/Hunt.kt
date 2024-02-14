@@ -13,7 +13,9 @@ import androidx.core.app.ActivityCompat
 import com.google.android.gms.location.*
 
 class Hunt : AppCompatActivity() {
-    //var currentGPS = Location_handler(this)
+
+    var currentGPS = Location_handler(this)
+
 
     private lateinit var fusedLocationClient: FusedLocationProviderClient
     private lateinit var locationRequest: LocationRequest
@@ -23,27 +25,28 @@ class Hunt : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_hunt)
 
-        //currentGPS.start_cap()
-    //
-        fusedLocationClient = LocationServices.getFusedLocationProviderClient(this)
-        locationRequest = LocationRequest.create().apply {
-            interval = 1000 // Update location every second
-            priority = LocationRequest.PRIORITY_HIGH_ACCURACY
-        }
 
-        locationCallback = object : LocationCallback() {
-            override fun onLocationResult(locationResult: LocationResult) {
-                locationResult ?: return
-                for (location in locationResult.locations){
-                    // Get latitude and longitude
-                    val latitude = location.latitude
-                    val longitude = location.longitude
-                    // Do something with the location data
-                    println("Latitude: $latitude, Longitude: $longitude")
-                    Log.i("GPS","Latitude: $latitude, Longitude: $longitude")
-                }
-            }
-        }
+        currentGPS.start_cap()
+    //
+//        fusedLocationClient = LocationServices.getFusedLocationProviderClient(this)
+//        locationRequest = LocationRequest.create().apply {
+//            interval = 1000 // Update location every second
+//            priority = LocationRequest.PRIORITY_HIGH_ACCURACY
+//        }
+//
+//        locationCallback = object : LocationCallback() {
+//            override fun onLocationResult(locationResult: LocationResult) {
+//                locationResult ?: return
+//                for (location in locationResult.locations){
+//                    // Get latitude and longitude
+//                    val latitude = location.latitude
+//                    val longitude = location.longitude
+//                    // Do something with the location data
+//                    println("Latitude: $latitude, Longitude: $longitude")
+//                    Log.i("GPS","Latitude: $latitude, Longitude: $longitude")
+//                }
+//            }
+//        }
     //
     }
     //

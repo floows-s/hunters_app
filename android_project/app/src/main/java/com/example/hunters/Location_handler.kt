@@ -10,6 +10,9 @@ import androidx.core.content.ContextCompat
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
 import android.Manifest
+import com.google.android.gms.location.LocationCallback
+import com.google.android.gms.location.LocationRequest
+import com.google.android.gms.location.LocationResult
 
 class Location_handler(var cur_context: Context) : LocationListener {
 
@@ -26,12 +29,33 @@ class Location_handler(var cur_context: Context) : LocationListener {
 
     private lateinit var locationManager : LocationManager
     public fun start_cap() {
-        locationManager = cur_context.getSystemService(Context.LOCATION_SERVICE) as LocationManager
-        if ((ContextCompat.checkSelfPermission(cur_context, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED)) {
-            val locationPermissionCode = 2
-            ActivityCompat.requestPermissions(cur_context as Activity, arrayOf(Manifest.permission.ACCESS_FINE_LOCATION), locationPermissionCode)
+
+        fusedLocationClient = LocationServices.getFusedLocationProviderClient(this)
+        locationRequest = LocationRequest.create().apply {
+            interval = 1000 // Update location every second
+            priority = LocationRequest.PRIORITY_HIGH_ACCURACY
         }
-        locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 2000, 0f, this)
+
+        locationCallback = object : LocationCallback() {
+            override fun onLocationResult(locationResult: LocationResult) {
+                locationResult ?: return
+                for (location in locationResult.locations){
+                    // Get latitude and longitude
+                    val latitude = location.latitude
+                    val longitude = location.longitude
+                    // Do something with the location data
+                    println("Latitude: $latitude, Longitude: $longitude")
+                    Log.i("GPS","Latitude: $latitude, Longitude: $longitude")
+                }
+            }
+        }
+        //
+//        locationManager = cur_context.getSystemService(Context.LOCATION_SERVICE) as LocationManager
+//        if ((ContextCompat.checkSelfPermission(cur_context, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED)) {
+//            val locationPermissionCode = 2
+//            ActivityCompat.requestPermissions(cur_context as Activity, arrayOf(Manifest.permission.ACCESS_FINE_LOCATION), locationPermissionCode)
+//        }
+//        locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 2000, 0f, this)
     }
 
     override fun onLocationChanged(location: Location) {
