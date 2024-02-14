@@ -2,6 +2,7 @@ package com.example.hunters
 
 import Location_handler
 import android.Manifest
+import android.content.Intent
 import android.location.Location
 import android.content.pm.PackageManager
 import androidx.appcompat.app.AppCompatActivity
@@ -15,6 +16,7 @@ import com.google.android.gms.location.*
 class Hunt : AppCompatActivity() {
 
     lateinit var currentGPS: Location_handler;
+    var disThershold = 3;
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -51,6 +53,11 @@ class Hunt : AppCompatActivity() {
         )
         Log.i("Distance", "Distance in meters: ${distanceInMeters[0]}")
 
+        if (distanceInMeters as Int == disThershold){
+
+            var goTo_main = Intent(this, MainActivity::class.java)
+            startActivity(goTo_main)
+        }
     }
 
     fun start_game(){
