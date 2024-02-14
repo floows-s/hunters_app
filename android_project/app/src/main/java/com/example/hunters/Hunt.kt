@@ -58,6 +58,7 @@ class Hunt : AppCompatActivity() {
 
         distance(currentGPS.getLat(), currentGPS.getLon(), 89.02, 49.22);
 
+
     }
 
 }
