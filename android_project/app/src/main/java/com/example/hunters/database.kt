@@ -22,21 +22,24 @@ class database(context: Context) {
     }
 
     fun insert_location(location: Hunt_location): Int {
-        // check if user exsits
-        val user_cur: Cursor = gebruikersDB.rawQuery("SELECT inlognaam FROM gegevens", null)
-        user_cur.moveToFirst()
-        val colum_inlognaam = user_cur.getColumnIndex("inlognaam")
-        while (user_cur.moveToNext()) {
-            val fetched_username = user_cur.getString(colum_inlognaam)
-            if (fetched_username == username) {
-                user_cur.close()
-                return -1 // error user already exists
-            }
-        }
-        user_cur.close()
+        var latitude = location.latitude;
+        var longitude = location.longitude;
+        var bitmap_img = location.img_bitmap;
 
-        // if user doesnt exists
-        gebruikersDB.execSQL("INSERT INTO gegevens (inlognaam, wachtwoord) VALUES ('$username', '$password');")
+        locationsDB?.execSQL("INSERT INTO gegevens (latitude, longitude, bitmap_img) VALUES ('$latitude', '$longitude', '$bitmap_img');")
         return 0
+    }
+
+    fun get_locations() {
+        val loc_cur: Cursor? = locationsDB?.rawQuery("SELECT * FROM locations", null)
+        loc_cur.moveToFirst()
+        val colum_inlognaam = loc_cur.getColumnIndex("latitude")
+        val colum_wachtwoord = loc_cur.getColumnIndex("longitude")
+        val colum_bitmap_img
+        while (loc_cur.moveToNext()) {
+            val users = loc_cur.getString(colum_inlognaam)
+            val wachtwoord = loc_cur.getString(colum_wachtwoord)
+        }
+        loc_cur.close()
     }
 }
