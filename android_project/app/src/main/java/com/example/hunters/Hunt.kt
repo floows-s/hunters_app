@@ -10,19 +10,25 @@ import android.os.Bundle
 import android.os.CountDownTimer
 import android.os.Looper
 import android.util.Log
+import android.widget.ImageView
 import androidx.core.app.ActivityCompat
 import com.google.android.gms.location.*
 
 class Hunt : AppCompatActivity() {
 
     lateinit var currentGPS: Location_handler;
-    var disThershold = 3;
+    lateinit var database: Database;
+    lateinit var loc_to_get: ArrayList<Hunt_location>;
+    var disThershold = 3.0;
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_hunt)
-
         currentGPS = Location_handler(this);
+
+        database = Database(this);
+        loc_to_get = database.get_locations();
+
 
         var timer = object: CountDownTimer(10000,500) {
             override fun onTick(p0: Long) {
@@ -36,36 +42,67 @@ class Hunt : AppCompatActivity() {
         timer.start()
 
     }
-    fun distance(cur_lat: Double, cur_lon: Double, loc_lat: Double, loc_lon: Double){
 
-        val loc1 = Location("Point A")
-        loc1.latitude = cur_lat
-        loc1.longitude = cur_lon
-        val loc2 = Location("Point B")
-        loc2.latitude = loc_lat
-        loc2.longitude = loc_lon
 
-        val distanceInMeters = FloatArray(1)
-        Location.distanceBetween(
-        loc1.latitude, loc1.longitude,
-        loc2.latitude, loc2.longitude,
-        distanceInMeters
-        )
-        Log.i("Distance", "Distance in meters: ${distanceInMeters[0]}")
+    fun start_game() {
 
-        if (distanceInMeters as Int == disThershold){
 
-            var goTo_main = Intent(this, MainActivity::class.java)
-            startActivity(goTo_main)
+        var loc_counter = 0;
+
+        NextTarget(loc_counter)
+        //
+
+    }
+    private fun NextTarget(currentPos : Int) {
+        if (currentPos > loc_to_get.size)
+        {
+
+            var goTo_end_hunt = Intent(this, End_hunt::class.java)
+            startActivity(goTo_end_hunt)
+            // logging ("success")
+        return;
         }
+
+        var img_view = findViewById<ImageView>(R.id.img_view2);
+
+        var cur_loc = loc_to_get.get(currentPos);
+        // load image
+        img_view.setImageBitmap(cur_loc.get_img());
+
+        MonitorProgress(cur_loc,currentPos)
+
     }
 
-    fun start_game(){
-        Log.i("GPS","Latitude: ${currentGPS.getLat()}, Longitude: ${currentGPS.getLon()}")
-
-        distance(currentGPS.getLat(), currentGPS.getLon(), 89.02, 49.22);
-
-
+    private fun  MonitorProgress(cur_loc : Hunt_location, currentPos:Int) {
+        var timer = object: CountDownTimer(250,250) {
+            override fun onTick(p0: Long) {
+                // check
+            }
+            override fun onFinish() {
+                if (CheckResult(cur_loc) == true) {
+                    NextTarget(currentPos + 1)
+                } else {
+                    MonitorProgress(cur_loc, currentPos)
+                }
+            }
+        }
+        timer.start()
     }
+
+    private fun CheckResult(cur_loc : Hunt_location) :Boolean{
+        var cur_lat = currentGPS.getLat();
+        var cur_lon = currentGPS.getLon();
+        Log.i("GPS", "Latitude: $cur_lat, Longitude: $cur_lon")
+
+        // check if reached goal
+        var distanceInMeters = cur_loc.calc_distance(cur_lat, cur_lon);
+        Log.i("Distance", "Distance in meters: $distanceInMeters")
+
+        if(distanceInMeters >= disThershold){
+            return false;
+        }
+        return true;
+    }
+
 
 }
