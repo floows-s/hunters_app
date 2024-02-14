@@ -16,7 +16,7 @@ import android.widget.ImageView
 
 class Make_location : AppCompatActivity() {
     val REQUEST_IMAGE_CAPTURE = 100;
-    var database = Database(this);
+    lateinit var database: Database;
     var loc_han = Location_handler(this);
 
     // data for location
@@ -29,6 +29,8 @@ class Make_location : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_make_location)
+
+        database = Database(this);
 
         var gps_btn = findViewById<View>(R.id.btn_gps);
         gps_btn.isEnabled = false;
@@ -48,6 +50,8 @@ class Make_location : AppCompatActivity() {
     public fun BackTo_make_hunt_klaar(view: View){
         // create and save object
         var new_location = Hunt_location(0, lat, lon, bitmap_img);
+
+
         database.insert_location(new_location)
 
         var goToMake_hunt = Intent(this, Make_hunt::class.java)
