@@ -16,6 +16,7 @@ import android.widget.ImageView
 
 class Make_location : AppCompatActivity() {
     val REQUEST_IMAGE_CAPTURE = 100;
+    var database =
     var loc_han = Location_handler(this);
 
     // data for location
@@ -45,6 +46,9 @@ class Make_location : AppCompatActivity() {
         timer.start()
     }
     public fun BackTo_make_hunt_klaar(view: View){
+
+
+
         var goToMake_hunt = Intent(this, Make_hunt::class.java)
         startActivity(goToMake_hunt)
     }
