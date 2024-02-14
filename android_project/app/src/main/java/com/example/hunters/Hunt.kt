@@ -10,11 +10,7 @@ import android.os.CountDownTimer
 import android.os.Looper
 import android.util.Log
 import androidx.core.app.ActivityCompat
-import com.google.android.gms.location.FusedLocationProviderClient
-import com.google.android.gms.location.LocationCallback
-import com.google.android.gms.location.LocationRequest
-import com.google.android.gms.location.LocationResult
-import com.google.android.gms.location.LocationServices
+import com.google.android.gms.location.*
 
 class Hunt : AppCompatActivity() {
     var currentGPS = Location_handler(this)
@@ -27,7 +23,7 @@ class Hunt : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_hunt)
 
-        currentGPS.start_cap()
+        //currentGPS.start_cap()
     //
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(this)
         locationRequest = LocationRequest.create().apply {
@@ -36,7 +32,7 @@ class Hunt : AppCompatActivity() {
         }
 
         locationCallback = object : LocationCallback() {
-            override fun onLocationResult(locationResult: LocationResult?) {
+            override fun onLocationResult(locationResult: LocationResult) {
                 locationResult ?: return
                 for (location in locationResult.locations){
                     // Get latitude and longitude
@@ -44,6 +40,7 @@ class Hunt : AppCompatActivity() {
                     val longitude = location.longitude
                     // Do something with the location data
                     println("Latitude: $latitude, Longitude: $longitude")
+                    Log.i("GPS","Latitude: $latitude, Longitude: $longitude")
                 }
             }
         }
