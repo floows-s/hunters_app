@@ -16,11 +16,6 @@ class Hunt : AppCompatActivity() {
 
     lateinit var currentGPS: Location_handler;
 
-
-//    private lateinit var fusedLocationClient: FusedLocationProviderClient
-//    private lateinit var locationRequest: LocationRequest
-//    private lateinit var locationCallback: LocationCallback
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_hunt)
@@ -38,39 +33,31 @@ class Hunt : AppCompatActivity() {
         }
         timer.start()
 
+    }
+    fun distance(cur_lat: Double, cur_lon: Double, loc_lat: Double, loc_lon: Double){
 
+        val loc1 = Location("Point A")
+        loc1.latitude = cur_lat
+        loc1.longitude = cur_lon
+        val loc2 = Location("Point B")
+        loc2.latitude = loc_lat
+        loc2.longitude = loc_lon
 
-
+        val distanceInMeters = FloatArray(1)
+        Location.distanceBetween(
+        loc1.latitude, loc1.longitude,
+        loc2.latitude, loc2.longitude,
+        distanceInMeters
+        )
+        Log.i("Distance", "Distance in meters: ${distanceInMeters[0]}")
 
     }
 
     fun start_game(){
         Log.i("GPS","Latitude: ${currentGPS.getLat()}, Longitude: ${currentGPS.getLon()}")
-        
+
+        distance(currentGPS.getLat(), currentGPS.getLon(), 89.02, 49.22);
 
     }
-//    override fun onResume() {
-//        super.onResume()
-//        startLocationUpdates()
-//    }
-
-//    private fun startLocationUpdates() {
-//        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-//            // Request location permissions if not granted
-//            ActivityCompat.requestPermissions(this, arrayOf(Manifest.permission.ACCESS_FINE_LOCATION), 0)
-//        } else {
-//            fusedLocationClient.requestLocationUpdates(locationRequest, locationCallback, Looper.getMainLooper())
-//        }
-//    }
-//
-//    override fun onPause() {
-//        super.onPause()
-//        stopLocationUpdates()
-//    }
-
-//    private fun stopLocationUpdates() {
-//        fusedLocationClient.removeLocationUpdates(locationCallback)
-//    }
-    //
 
 }

@@ -53,11 +53,6 @@ class Location_handler(var cur_context: Context) {
         startLocationUpdates()
     }
 
-//    override fun onResume() {
-//        super.onResume()
-//        startLocationUpdates()
-//    }
-
     private fun startLocationUpdates() {
         if (ActivityCompat.checkSelfPermission(cur_context, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             // Request location permissions if not granted
@@ -66,36 +61,5 @@ class Location_handler(var cur_context: Context) {
             fusedLocationClient.requestLocationUpdates(locationRequest, locationCallback, Looper.getMainLooper())
         }
     }
-
-//    override fun onPause() {
-//        super.onPause()
-//        stopLocationUpdates()
-//    }
-
-//    private fun stopLocationUpdates() {
-//        fusedLocationClient.removeLocationUpdates(locationCallback)
-//    }
-
-
-
-
-   //private lateinit var locationManager : LocationManager
-    //public fun start_cap() {
-
-        //
-//        locationManager = cur_context.getSystemService(Context.LOCATION_SERVICE) as LocationManager
-//        if ((ContextCompat.checkSelfPermission(cur_context, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED)) {
-//            val locationPermissionCode = 2
-//            ActivityCompat.requestPermissions(cur_context as Activity, arrayOf(Manifest.permission.ACCESS_FINE_LOCATION), locationPermissionCode)
-//        }
-//        locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 2000, 0f, this)
-    //}
-
-//    override fun onLocationChanged(location: Location) {
-//        HasGPS = true;
-//        loc = location.longitude;
-//        lat = location.latitude;
-//    }
-
 
 }
