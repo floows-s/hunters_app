@@ -1,6 +1,7 @@
 package com.example.hunters
 
 import android.graphics.Bitmap
+import android.health.connect.datatypes.ExerciseRoute.Location
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 
@@ -16,6 +17,7 @@ class Hunt_location(var latitude: Double, var longitude: Double, var img_bitmap:
 
     }
 
+    val loc1 = loc1.latitude = startLatitude
 
     public fun get_img(): Bitmap{
 
