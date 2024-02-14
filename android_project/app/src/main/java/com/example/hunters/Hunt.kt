@@ -14,64 +14,51 @@ import com.google.android.gms.location.*
 
 class Hunt : AppCompatActivity() {
 
-    var currentGPS = Location_handler(this)
-
-
-    private lateinit var fusedLocationClient: FusedLocationProviderClient
-    private lateinit var locationRequest: LocationRequest
-    private lateinit var locationCallback: LocationCallback
+    lateinit var currentGPS: Location_handler;
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_hunt)
 
+        currentGPS = Location_handler(this);
 
-        currentGPS.start_cap()
-    //
-//        fusedLocationClient = LocationServices.getFusedLocationProviderClient(this)
-//        locationRequest = LocationRequest.create().apply {
-//            interval = 1000 // Update location every second
-//            priority = LocationRequest.PRIORITY_HIGH_ACCURACY
-//        }
-//
-//        locationCallback = object : LocationCallback() {
-//            override fun onLocationResult(locationResult: LocationResult) {
-//                locationResult ?: return
-//                for (location in locationResult.locations){
-//                    // Get latitude and longitude
-//                    val latitude = location.latitude
-//                    val longitude = location.longitude
-//                    // Do something with the location data
-//                    println("Latitude: $latitude, Longitude: $longitude")
-//                    Log.i("GPS","Latitude: $latitude, Longitude: $longitude")
-//                }
-//            }
-//        }
-    //
+        var timer = object: CountDownTimer(10000,500) {
+            override fun onTick(p0: Long) {
+                Log.i("GPS", "Tick")
+            }
+            override fun onFinish() {
+                start_game()
+                Log.i("GPS", "finish")
+            }
+        }
+        timer.start()
+
     }
-    //
-//    override fun onResume() {
-//        super.onResume()
-//        startLocationUpdates()
-//    }
+    fun distance(cur_lat: Double, cur_lon: Double, loc_lat: Double, loc_lon: Double){
 
-//    private fun startLocationUpdates() {
-//        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-//            // Request location permissions if not granted
-//            ActivityCompat.requestPermissions(this, arrayOf(Manifest.permission.ACCESS_FINE_LOCATION), 0)
-//        } else {
-//            fusedLocationClient.requestLocationUpdates(locationRequest, locationCallback, Looper.getMainLooper())
-//        }
-//    }
+        val loc1 = Location("Point A")
+        loc1.latitude = cur_lat
+        loc1.longitude = cur_lon
+        val loc2 = Location("Point B")
+        loc2.latitude = loc_lat
+        loc2.longitude = loc_lon
 
-    override fun onPause() {
-        super.onPause()
-        stopLocationUpdates()
+        val distanceInMeters = FloatArray(1)
+        Location.distanceBetween(
+        loc1.latitude, loc1.longitude,
+        loc2.latitude, loc2.longitude,
+        distanceInMeters
+        )
+        Log.i("Distance", "Distance in meters: ${distanceInMeters[0]}")
+
     }
 
-    private fun stopLocationUpdates() {
-        fusedLocationClient.removeLocationUpdates(locationCallback)
+    fun start_game(){
+        Log.i("GPS","Latitude: ${currentGPS.getLat()}, Longitude: ${currentGPS.getLon()}")
+
+        distance(currentGPS.getLat(), currentGPS.getLon(), 89.02, 49.22);
+
+
     }
-    //
 
 }

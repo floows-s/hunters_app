@@ -35,7 +35,7 @@ class Make_location : AppCompatActivity() {
         var gps_btn = findViewById<View>(R.id.btn_gps);
         gps_btn.isEnabled = false;
 
-        loc_han.start_cap();
+//        loc_han.start_cap();
 
         var timer = object: CountDownTimer(10000,500) {
             override fun onTick(p0: Long) {
