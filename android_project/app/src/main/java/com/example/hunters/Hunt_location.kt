@@ -13,20 +13,22 @@ class Hunt_location(var id: Int, var latitude: Double, var longitude: Double, va
         var lat_p1 = latitude;
         var lon_p1 = longitude;
 
-        val loc1 = Location("Point A")
-        loc1.latitude = lat_p1
-        loc1.longitude = lon_p1
+//        val loc1 = Location("Point A")
+//        loc1.latitude = lat_p1
+//        loc1.longitude = lon_p1
+//
+//        val loc2 = Location("Point B")
+//        loc2.latitude = lat_p2
+//        loc2.longitude = lon_p2
 
-        val loc2 = Location("Point B")
-        loc2.latitude = lat_p2
-        loc2.longitude = lon_p2
+        //val distanceInMeters = loc1.distanceTo(loc2)
 
-        val distanceInMeters = FloatArray(1)
-        Location.distanceBetween(
-            loc1.latitude, loc1.longitude,
-            loc2.latitude, loc2.longitude,
-            distanceInMeters
-        )
+//        val distanceInMeters = FloatArray(1)
+//        Location.distanceBetween(
+//            loc1.latitude, loc1.longitude,
+//            loc2.latitude, loc2.longitude,
+//            distanceInMeters
+//        )
     }
 
 
