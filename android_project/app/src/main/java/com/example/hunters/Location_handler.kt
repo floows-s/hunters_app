@@ -40,12 +40,14 @@ class Location_handler(var cur_context: Context) {
             override fun onLocationResult(locationResult: LocationResult) {
                 locationResult ?: return
                 for (location in locationResult.locations){
+                    HasGPS = true;
                     // Get latitude and longitude
                     lat = location.latitude
                     lon = location.longitude
                     // Do something with the location data
 //                    println("Latitude: $lat, Longitude: $lon")
 //                    Log.i("GPS","Latitude: $lat, Longitude: $lon")
+
                 }
             }
         }

@@ -35,11 +35,14 @@ class Make_hunt : AppCompatActivity() {
 //        Log.i("ID TEST", "lat: $test | size: $size");
 
         var btn_layout: LinearLayout = findViewById(R.id.btn_layout);
-        for (i in 0..loc_array.size) {
-            Log.i("hunt_location", loc_array.get(i).toString());
-            var cur_id = loc_array.get(i).id;
+        var counter = 0;
+
+        while(counter < loc_array.size){
+            Log.i("hunt_location", loc_array.get(counter).toString());
+            var cur_id = loc_array.get(counter).id;
 
             var new_btn = Button(this);
+
             btn_layout.addView(new_btn);
 
             new_btn.setText("Delete location: " + cur_id.toString());
@@ -47,7 +50,9 @@ class Make_hunt : AppCompatActivity() {
                 database.delete_location(cur_id);
             }
 
+            counter++;
         }
+
     }
 
     public fun Make_location(view: View){

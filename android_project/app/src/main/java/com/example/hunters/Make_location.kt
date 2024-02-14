@@ -17,7 +17,7 @@ import android.widget.ImageView
 class Make_location : AppCompatActivity() {
     val REQUEST_IMAGE_CAPTURE = 100;
     lateinit var database: Database;
-    var loc_han = Location_handler(this);
+    lateinit var loc_han: Location_handler;
 
     // data for location
     var lat = 0.0;
@@ -31,11 +31,11 @@ class Make_location : AppCompatActivity() {
         setContentView(R.layout.activity_make_location)
 
         database = Database(this);
+        loc_han = Location_handler(this);
 
         var gps_btn = findViewById<View>(R.id.btn_gps);
         gps_btn.isEnabled = false;
 
-//        loc_han.start_cap();
 
         var timer = object: CountDownTimer(10000,500) {
             override fun onTick(p0: Long) {

@@ -58,7 +58,7 @@ class Database(var app_context: Context) {
         Log.i("ID TEST", "WERKT get location");
         var loc_array = ArrayList<Hunt_location>();
         val loc_cur: Cursor = locationsDB.rawQuery("SELECT * FROM locations",null)
-        var a = loc_cur.moveToFirst()
+        loc_cur.moveToFirst()
 
         val colum_id = loc_cur.getColumnIndex("id")
         val colum_latitude = loc_cur.getColumnIndex("latitude")
