@@ -28,41 +28,41 @@ class Hunt : AppCompatActivity() {
 
         currentGPS.start_cap()
     //
-//        fusedLocationClient = LocationServices.getFusedLocationProviderClient(this)
-//        locationRequest = LocationRequest.create().apply {
-//            interval = 1000 // Update location every second
-//            priority = LocationRequest.PRIORITY_HIGH_ACCURACY
-//        }
-//
-//        locationCallback = object : LocationCallback() {
-//            override fun onLocationResult(locationResult: LocationResult) {
-//                locationResult ?: return
-//                for (location in locationResult.locations){
-//                    // Get latitude and longitude
-//                    val latitude = location.latitude
-//                    val longitude = location.longitude
-//                    // Do something with the location data
-//                    println("Latitude: $latitude, Longitude: $longitude")
-//                    Log.i("GPS","Latitude: $latitude, Longitude: $longitude")
-//                }
-//            }
-//        }
+        fusedLocationClient = LocationServices.getFusedLocationProviderClient(this)
+        locationRequest = LocationRequest.create().apply {
+            interval = 1000 // Update location every second
+            priority = LocationRequest.PRIORITY_HIGH_ACCURACY
+        }
+
+        locationCallback = object : LocationCallback() {
+            override fun onLocationResult(locationResult: LocationResult) {
+                locationResult ?: return
+                for (location in locationResult.locations){
+                    // Get latitude and longitude
+                    val latitude = location.latitude
+                    val longitude = location.longitude
+                    // Do something with the location data
+                    println("Latitude: $latitude, Longitude: $longitude")
+                    Log.i("GPS","Latitude: $latitude, Longitude: $longitude")
+                }
+            }
+        }
     //
     }
     //
-//    override fun onResume() {
-//        super.onResume()
-//        startLocationUpdates()
-//    }
+    override fun onResume() {
+        super.onResume()
+        startLocationUpdates()
+    }
 
-//    private fun startLocationUpdates() {
-//        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-//            // Request location permissions if not granted
-//            ActivityCompat.requestPermissions(this, arrayOf(Manifest.permission.ACCESS_FINE_LOCATION), 0)
-//        } else {
-//            fusedLocationClient.requestLocationUpdates(locationRequest, locationCallback, Looper.getMainLooper())
-//        }
-//    }
+    private fun startLocationUpdates() {
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            // Request location permissions if not granted
+            ActivityCompat.requestPermissions(this, arrayOf(Manifest.permission.ACCESS_FINE_LOCATION), 0)
+        } else {
+            fusedLocationClient.requestLocationUpdates(locationRequest, locationCallback, Looper.getMainLooper())
+        }
+    }
 
     override fun onPause() {
         super.onPause()
