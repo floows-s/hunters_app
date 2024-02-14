@@ -13,7 +13,7 @@ import androidx.core.app.ActivityCompat
 import com.google.android.gms.location.*
 
 class Hunt : AppCompatActivity() {
-    var currentGPS = Location_handler(this)
+    //var currentGPS = Location_handler(this)
 
     private lateinit var fusedLocationClient: FusedLocationProviderClient
     private lateinit var locationRequest: LocationRequest
