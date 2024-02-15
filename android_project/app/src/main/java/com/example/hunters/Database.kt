@@ -9,6 +9,7 @@ import android.graphics.BitmapFactory
 import android.util.Log
 import androidx.core.graphics.createBitmap
 import java.io.ByteArrayOutputStream
+import java.util.Arrays
 
 class Database(var app_context: Context) {
 
@@ -39,6 +40,8 @@ class Database(var app_context: Context) {
         var longitude = location.longitude;
         var bitmap_img = location.img_bitmap;
         val blob_img = ByteArrayOutputStream().apply { bitmap_img.compress(Bitmap.CompressFormat.PNG, 100, this) }.toByteArray();
+
+        var result = Arrays.toString(blob_img);
 
         var ins = locationsDB.compileStatement("INSERT INTO locations (latitude, longitude, bitmap_img) VALUES(?,?,?)")
         ins.clearBindings()

@@ -21,22 +21,20 @@ class Make_hunt : AppCompatActivity() {
         setContentView(R.layout.activity_make_hunt)
 
         database = Database(this);
-
-        // get all data and load all data to page
-//        var btn_layout: LinearLayout = findViewById(R.id.btn_layout);
-//        var new_btn = Button(this);
-//        btn_layout.addView(new_btn);
-//        new_btn.setText("Delete location: bruh");
-
         loc_array = database.get_locations();
 
-//        var test = loc_array.get(0).latitude;
-//        var size = loc_array.size;
-//        Log.i("ID TEST", "lat: $test | size: $size");
+        load_locBtns();
 
+
+
+    }
+
+
+    fun load_locBtns(){
+        // get view and remove all childeren
         var btn_layout: LinearLayout = findViewById(R.id.btn_layout);
-        var counter = 0;
 
+        var counter = 0;
         while(counter < loc_array.size){
             Log.i("hunt_location", loc_array.get(counter).toString());
             var cur_id = loc_array.get(counter).id;
@@ -45,14 +43,16 @@ class Make_hunt : AppCompatActivity() {
 
             btn_layout.addView(new_btn);
 
-            new_btn.setText("Delete location: " + cur_id.toString());
+            new_btn.setText("Delete location: " + (counter+1).toString());
             new_btn.setOnClickListener {
                 database.delete_location(cur_id);
+
+                // reload
+                recreate();
             }
 
             counter++;
         }
-
     }
 
     public fun Make_location(view: View){

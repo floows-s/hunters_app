@@ -13,6 +13,7 @@ import android.util.Log
 import android.view.View
 import android.widget.EditText
 import android.widget.ImageView
+import java.util.Arrays
 
 class Make_location : AppCompatActivity() {
     val REQUEST_IMAGE_CAPTURE = 100;
@@ -97,7 +98,6 @@ class Make_location : AppCompatActivity() {
 
         if(requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK){
             bitmap_img = data?.extras?.get("data") as Bitmap;
-
             image_view.setImageBitmap(bitmap_img);
         }
         else{
