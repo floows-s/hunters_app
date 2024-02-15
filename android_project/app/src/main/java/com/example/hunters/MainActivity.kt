@@ -17,9 +17,10 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         // load 5 locations
-        var json_loc = read_json("def_locations.json");
-        val longitude = json_loc?.getDouble("longitude");
-        Log.i("JOSNS", "JSON longitude: " + longitude.toString());
+
+        //var json_loc = read_json("def_locations.json");
+       // val longitude = json_loc?.getDouble("longitude");
+       // Log.i("JOSNS", "JSON longitude: " + longitude.toString());
     }
 
     public fun Make_hunt(view: View){
