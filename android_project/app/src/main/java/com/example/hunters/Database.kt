@@ -17,47 +17,42 @@ class Database(var app_context: Context) {
 
     init {
         open_db()
-
+//        delete_all()
     }
 
-    public fun open_db() {
+    fun open_db() {
         locationsDB = app_context.openOrCreateDatabase("locationDB", Context.MODE_PRIVATE, null)
 
         // create table if it isnt created already (sqlite)
         locationsDB.execSQL("CREATE TABLE IF NOT EXISTS locations (id INTEGER PRIMARY KEY AUTOINCREMENT, latitude DOUBLE, longitude DOUBLE, bitmap_img BLOB);")
     }
 
-    public fun add_default(){
 
-    }
-
-    public fun delete_all(){
+    private fun delete_all(){
         locationsDB.execSQL("DELETE FROM locations");
     }
-    fun insert_location(location: Hunt_location): Int {
+    public fun insert_location(location: Hunt_location): Int {
         Log.i("ID TEST", "insert");
         var latitude = location.latitude;
         var longitude = location.longitude;
         var bitmap_img = location.img_bitmap;
         val blob_img = ByteArrayOutputStream().apply { bitmap_img.compress(Bitmap.CompressFormat.PNG, 100, this) }.toByteArray();
 
-        var result = Arrays.toString(blob_img);
 
         var ins = locationsDB.compileStatement("INSERT INTO locations (latitude, longitude, bitmap_img) VALUES(?,?,?)")
         ins.clearBindings()
         ins.bindDouble(1,latitude)
         ins.bindDouble(2,longitude)
         ins.bindBlob(3,blob_img)
-        var l = ins.executeInsert()
-        var t =0
+        ins.executeInsert()
 
-//        locationsDB.execSQL("INSERT INTO locations (latitude, longitude, bitmap_img) VALUES ('$latitude', '$longitude', $blob_img');")
+        //locationsDB.execSQL("INSERT INTO locations (latitude, longitude, bitmap_img) VALUES ('$latitude', '$longitude', $blob_img');")
 
 
         return 0
     }
 
-    fun get_locations(): ArrayList<Hunt_location> {
+    public fun get_locations(): ArrayList<Hunt_location> {
         Log.i("ID TEST", "WERKT get location");
         var loc_array = ArrayList<Hunt_location>();
         val loc_cur: Cursor = locationsDB.rawQuery("SELECT * FROM locations",null)
@@ -93,7 +88,7 @@ class Database(var app_context: Context) {
     }
 
 
-    fun delete_location(id: Int){
+    public fun delete_location(id: Int){
         locationsDB.execSQL("DELETE FROM locations WHERE id = $id")
     }
 }
