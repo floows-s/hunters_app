@@ -43,7 +43,7 @@ class Make_hunt : AppCompatActivity() {
 
             btn_layout.addView(new_btn);
 
-            new_btn.setText("Delete location: " + (counter+1).toString());
+            new_btn.setText("Delete location: " + cur_id.toString());
             new_btn.setOnClickListener {
                 database.delete_location(cur_id);
 

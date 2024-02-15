@@ -104,7 +104,7 @@ class Hunt : AppCompatActivity() {
         var distanceInMeters = cur_loc.calc_distance(cur_lat, cur_lon);
 
         var txt_distance = findViewById<TextView>(R.id.txt_distance);
-        txt_distance.setText("Je bent " + distanceInMeters.toString() + "meter van de locatie af .....")
+        txt_distance.setText("Je bent " + distanceInMeters.toString() + " meter van de locatie af .....")
 
         Log.i("Distance", "Distance in meters: $distanceInMeters")
 

@@ -1,9 +1,12 @@
 package com.example.hunters
 
 import android.content.Intent
+import android.graphics.Bitmap
+import android.graphics.BitmapFactory
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import android.widget.ImageView
 
 class End_hunt : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
